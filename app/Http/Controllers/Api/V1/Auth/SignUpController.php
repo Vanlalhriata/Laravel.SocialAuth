@@ -31,6 +31,7 @@ class SignUpController extends Controller
                 'name' => $params['name'],
                 'email' => $params['email'],
                 'password' => bcrypt($params['password']),
+                'auth_provider' => 'email',
             ]);
 
             $customClaims = ['exp' => 5000000000];  // Set to expire in 100+ years

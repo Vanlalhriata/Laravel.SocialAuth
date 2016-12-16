@@ -2,6 +2,29 @@
 
 Stateless token-based api authentication in Laravel for both email and social media using [jwt-auth](https://github.com/tymondesigns/jwt-auth)
 
+---
+
+### Installation
+
+After cloning the repository, use Composer to install dependencies:
+```
+$ composer install
+```
+Copy `env.example` into `.env` and set the values for database, social media secrets etc.. Then generate the Laravel app key and JWT secret:
+```
+$ php artisan key:generate
+$ php artisan jwt:generate
+```
+The JWT secret is stored in `config/jwt.php` by default. You may want to move this into the `.env` file instead.
+
+Lastly, run the migrations:
+```
+$ php artisan migrate
+```
+Boom! Done.
+
+---
+
 ### Usage
 
 ##### Sign up
@@ -18,7 +41,10 @@ A signed JWT token identifying the user will be returned on successful login.
 
 - Method: `POST`
 - Path: `/api/v1/login`
-- Parameters for email authentication: `email`, `password`
+- Parameters for email authentication: `email`, `password`, `auth-provider=email`
+- Parameters for social authentication: `social-id`, `access-token`, `auth-provider={provider}`
+
+Valid values for `auth-provider`: `email`, `facebook` 
 
 ##### Token test
 
@@ -26,7 +52,9 @@ A signed JWT token identifying the user will be returned on successful login.
 - Path: `/api/v1/test`
 - Parameters: `token`
 
-Alternately, the token may be included in the request header with key `Authorization` and value `Bearer {token}`	
+Alternately, the token may be included in the request header with key `Authorization` and value `Bearer {token}`
+
+---
 
 ### License
 
