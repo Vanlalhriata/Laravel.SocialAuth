@@ -13,7 +13,7 @@ use Ramsey\Uuid\Uuid;
 
 class LoginController extends Controller
 {
-    private $validAuthProviders = ['email', 'facebook'];
+    private $validAuthProviders = ['email', 'facebook', 'google'];
 
     private $JWTAuth;
     private $authProvider;
@@ -115,7 +115,7 @@ class LoginController extends Controller
 
         try
         {
-            $socialUser = Socialite::driver('facebook')->userFromToken($accessToken);
+            $socialUser = Socialite::driver($this->authProvider)->userFromToken($accessToken);
         }
         catch (ClientException $e)
         {

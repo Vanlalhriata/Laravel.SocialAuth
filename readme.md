@@ -41,10 +41,10 @@ A signed JWT token identifying the user will be returned on successful login.
 
 - Method: `POST`
 - Path: `/api/v1/login`
-- Parameters for email authentication: `email`, `password`, `auth-provider=email`
-- Parameters for social authentication: `social-id`, `access-token`, `auth-provider={provider}`
+- Parameters for email authentication: `email`, `password`, `auth-provider`
+- Parameters for social authentication: `social-id`, `access-token`, `auth-provider`
 
-Valid values for `auth-provider`: `email`, `facebook` 
+Valid values for `auth-provider`: `email`, `facebook`, `google`
 
 ##### Token test
 
